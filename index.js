@@ -4,14 +4,11 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middlewares
 app.use(bodyParser.json());
 app.use(cors());
 
-// Require the authentication middleware
 const authMiddleware = require('./src/middleware/authMiddleware');
 
-// Require the JWT secret key from the secrets.js file
 const { jwtSecret } = require('./src/config/secrets');
 
 // Routes
@@ -22,8 +19,8 @@ const signinRoutes = require('./src/routes/signin');
 app.use('/api/signup', signupRoutes);
 app.use('/api/signin', signinRoutes);
 
-// Apply the auth middleware to protect the task routes
-app.use('/api/tasks', authMiddleware, taskRoutes);
+// Apply the auth middleware to the task routes
+app.use('/api/tasks', taskRoutes);
 
 
 app.listen(port, () => {

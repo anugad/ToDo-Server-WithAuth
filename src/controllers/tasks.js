@@ -13,6 +13,7 @@ exports.createTask = (req, res) => {
   });
 };
 
+
 // Get all tasks
 exports.getTasks = (req, res) => {
   db.getTasks((err, results) => {
